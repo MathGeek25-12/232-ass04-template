@@ -1,4 +1,4 @@
-//char *AUTHOR_NAME        = (char *) "Your Name";
+//char *AUTHOR_NAME        = (char *) "Amelia Fladager";
 //char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this
 // assignment independently, except where explicitly noted and referenced.
 // Any collaboration or use of external resources has been properly cited.
@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 // ============================================================
 // Node — self-referential struct
@@ -80,7 +81,8 @@ int   listLength  (Node *headPtr);
 
 static void _nullify(Node **nodePtrPtr)
 {
-    // TODO
+    *nodePtrPtr = NULL;
+
 }
 
 
@@ -173,7 +175,8 @@ static Node* _findValue(Node *headPtr, int value)
 
 void initNode(Node *nodePtr, int value)
 {
-    // TODO
+    nodePtr->value = value;
+    nodePtr -> nextPtr = NULL;
 }
 
 
@@ -196,8 +199,14 @@ void initNode(Node *nodePtr, int value)
 
 Node* createNode(int value)
 {
-    // TODO
-    return NULL;
+    Node *nodePtr = malloc(sizeof(Node));
+    if(nodePtr == NULL)
+    {
+        fprintf(stderr, "Error:malloc failed.\n");
+        return NULL;
+    }
+    initNode(nodePtr, value);
+    return nodePtr;
 }
 
 
@@ -218,7 +227,10 @@ Node* createNode(int value)
 
 void destroyNode(Node **nodePtrPtr)
 {
-    // TODO
+    if(nodePtrPtr == NULL || *nodePtrPtr == NULL)
+        return;
+    free(*nodePtrPtr);
+    *nodePtrPtr = NULL;
 }
 
 
@@ -244,7 +256,8 @@ void destroyNode(Node **nodePtrPtr)
 
 int addFirst(Node **headPtrPtr, Node *newNodePtr)
 {
-    // TODO
+    headPtrPtr -> nextPtr = newNodePtr;
+    newNodePtr = *headPtrPtr;
     return -1;
 }
 
@@ -436,7 +449,10 @@ int deleteValue(Node **headPtrPtr, int value)
 
 void destroyList(Node **headPtrPtr)
 {
-    // TODO
+    if(headPtrPtr == NULL || *headPtrPtr == NULL)
+        return;
+    free(*headPtrPtr);
+    *headPtrPtr = NULL;
 }
 
 

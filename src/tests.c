@@ -52,8 +52,9 @@ int   listLength  (Node *headPtr);
 
 void test_initNode_sets_value(void)
 {
-        TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
-    
+    Node a;
+    initNode(&a, 12);
+    TEST_ASSERT_EQUAL(12, a.value);
 }
 
 
@@ -67,8 +68,9 @@ void test_initNode_sets_value(void)
 
 void test_initNode_sets_next_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node a;
+    initNode(&a, NULL);
+    TEST_ASSERT_EQUAL(NULL, a.value);
 }
 
 
@@ -81,10 +83,9 @@ void test_initNode_sets_next_null(void)
 
 void test_initNode_null_guard(void)
 {
-    // TODO
-    initNode(NULL, 42);
-    TEST_ASSERT_TRUE_MESSAGE(1 == 1,
-        "Error: initNode must handle NULL without crashing.");
+    Node a;
+    initNode(&a, NULL);
+    TEST_ASSERT_EQUAL(NULL, a.value);
 }
 
 
@@ -98,8 +99,10 @@ void test_initNode_null_guard(void)
 
 void test_createNode_not_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *nodePtr;
+    nodePtr = createNode(12);
+    TEST_ASSERT_EQUAL(12, nodePtr->value);
+    destroyNode(&nodePtr);
 }
 
 
@@ -114,8 +117,10 @@ void test_createNode_not_null(void)
 
 void test_createNode_value(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *nodePtr;
+    nodePtr = createNode(12);
+    TEST_ASSERT_EQUAL(12, nodePtr->value);
+    destroyNode(&nodePtr);
 }
 
 
@@ -129,8 +134,10 @@ void test_createNode_value(void)
 
 void test_createNode_next_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *nodePtr;
+    nodePtr = createNode(NULL);
+    TEST_ASSERT_EQUAL(NULL, nodePtr->value);
+    destroyNode(&nodePtr);
 }
 
 
@@ -144,8 +151,11 @@ void test_createNode_next_null(void)
 
 void test_destroyNode_sets_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *nodePtr;
+    nodePtr = createNode(0);
+    TEST_ASSERT_EQUAL(NULL, nodePtr->value);
+    destroyNode(&nodePtr);
+    
 }
 
 
@@ -160,8 +170,11 @@ void test_destroyNode_sets_null(void)
 
 void test_addFirst_empty_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *headPtr = NULL;
+    Node *newNodePtr = createNode(12);
+    addFirst(&headPtr, newNodePtr);
+    TEST_ASSERT_EQUAL(&newNodePtr, headPtr);
+    destroyList(&headPtr);
 }
 
 
