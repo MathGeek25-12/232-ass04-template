@@ -173,7 +173,7 @@ void test_addFirst_empty_list(void)
     Node *headPtr = NULL;
     Node *newNodePtr = createNode(12);
     addFirst(&headPtr, newNodePtr);
-    TEST_ASSERT_EQUAL(&newNodePtr, headPtr);
+    TEST_ASSERT_EQUAL(&headPtr, headPtr);
     destroyList(&headPtr);
 }
 
@@ -190,8 +190,17 @@ void test_addFirst_empty_list(void)
 
 void test_addFirst_non_empty(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *headPtr = NULL;
+    Node *NewNodePtr = createNode(2);
+    Node *New2NodePtr = createNode(3);
+
+    New2NodePtr -> nextPtr = headPtr;
+    headPtr = New2NodePtr;
+
+    addFirst(&NewNodePtr, NewNodePtr);
+    addFirst(&New2NodePtr, New2NodePtr);
+    TEST_ASSERT_EQUAL(&headPtr, headPtr);
+    destroyList(&headPtr);
 }
 
 
@@ -204,8 +213,10 @@ void test_addFirst_non_empty(void)
 
 void test_addFirst_null_headptr(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *headPtr = NULL;
+    addFirst(NULL, headPtr);
+    TEST_ASSERT_EQUAL(&headPtr, -1);
+    destroyList(&headPtr);
 }
 
 

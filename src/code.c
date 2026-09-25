@@ -100,8 +100,8 @@ static void _nullify(Node **nodePtrPtr)
 
 static Node* _findFirst(Node *headPtr)
 {
-    // TODO
-    return NULL;
+    Node *currentPtr = headPtr;
+    return currentPtr;
 }
 
 
@@ -123,8 +123,15 @@ static Node* _findFirst(Node *headPtr)
 
 static Node* _findLast(Node *headPtr)
 {
-    // TODO
-    return NULL;
+    if(headPtr == NULL){
+        return NULL;
+    }
+    Node *currentPtr = headPtr;
+
+    while(currentPtr->nextPtr != NULL){
+        currentPtr = currentPtr->nextPtr;
+    }
+    return currentPtr;
 }
 
 
@@ -256,9 +263,9 @@ void destroyNode(Node **nodePtrPtr)
 
 int addFirst(Node **headPtrPtr, Node *newNodePtr)
 {
-    headPtrPtr -> nextPtr = newNodePtr;
-    newNodePtr = *headPtrPtr;
-    return -1;
+    newNodePtr -> nextPtr = *headPtrPtr;
+    *headPtrPtr = newNodePtr;
+    return &headPtrPtr;
 }
 
 
